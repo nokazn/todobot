@@ -5,8 +5,7 @@
   "author": "nokazn <nokazn@gmail.com>",
   "description": "A simple helpful robot for your Company",
   "scripts": {
-    "dev": "ts-node-dev --respawn ./src/index.ts",
-    "dev:watch": "ts-node-dev --respawn ./src/index.ts --watch"
+    "dev": "tsc --watch"
   },
   "dependencies": {
     "@types/hubot": "^3.3.0",
@@ -35,7 +34,6 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
-    "prettier": "^2.0.5",
-    "ts-node-dev": "^1.0.0-pre.58"
+    "prettier": "^2.0.5"
   }
 }
