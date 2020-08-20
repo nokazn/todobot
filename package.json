@@ -4,7 +4,12 @@
   "private": true,
   "author": "nokazn <nokazn@gmail.com>",
   "description": "A simple helpful robot for your Company",
+  "scripts": {
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "dev:watch": "ts-node-dev --respawn ./src/index.ts --watch"
+  },
   "dependencies": {
+    "@types/hubot": "^3.3.0",
     "hubot": "^3.3.2",
     "hubot-diagnostics": "^1.0.0",
     "hubot-google-images": "^0.2.7",
@@ -17,9 +22,14 @@
     "hubot-rules": "^1.0.0",
     "hubot-scripts": "^2.17.2",
     "hubot-shipit": "^0.2.1",
-    "hubot-slack": "^4.8.0"
+    "hubot-slack": "^4.8.0",
+    "typescript": "^3.9.7"
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "ts-node-dev": "^1.0.0-pre.58"
   }
 }
