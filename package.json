@@ -7,8 +7,12 @@
   "scripts": {
     "dev": "tsc --watch"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "dependencies": {
     "@types/hubot": "^3.3.0",
+    "generator-hubot-yarn": "^0.9.6",
     "hubot": "^3.3.2",
     "hubot-diagnostics": "^1.0.0",
     "hubot-google-images": "^0.2.7",
@@ -23,9 +27,6 @@
     "hubot-shipit": "^0.2.1",
     "hubot-slack": "^4.8.0",
     "typescript": "^3.9.7"
-  },
-  "engines": {
-    "node": "0.10.x"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.9.1",
