@@ -31,20 +31,22 @@ module.exports = (robot: hubot.Robot) => {
   });
 
   robot.respond(/list/i, (msg) => {
-    msg.send(
-      todo
-        .list()
-        .map((task) => `・${task}`)
-        .join('\n'),
-    );
+    const todoList = todo.list();
+    if (todoList.length === 0) {
+      msg.send('TODOはありません。');
+      return;
+    }
+
+    msg.send(todoList.map((task) => `・${task}`).join('\n'));
   });
 
   robot.respond(/donelist/i, (msg) => {
-    msg.send(
-      todo
-        .doneList()
-        .map((task) => `・${task}`)
-        .join('\n'),
-    );
+    const doneTodoList = todo.doneList();
+    if (doneTodoList.length === 0) {
+      msg.send('完了したTODOはありません。');
+      return;
+    }
+
+    msg.send(doneTodoList.map((task) => `・${task}`).join('\n'));
   });
 };
