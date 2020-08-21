@@ -1,10 +1,28 @@
-const tasks = new Map();
+import fs from 'fs';
+
+const FILE_NAME = './tasks.json';
+
+let tasks: Map<string, boolean> = new Map();
+try {
+  const data = fs.readFileSync(FILE_NAME, 'utf8');
+  tasks = new Map(JSON.parse(data));
+} catch (err) {
+  console.error(`${FILE_NAME}から復元できませんでした。`);
+}
+
+/**
+ * タスクをファイルに保存
+ */
+const saveTasks = () => {
+  fs.writeFileSync(FILE_NAME, JSON.stringify(Array.from(tasks)), 'utf8');
+};
 
 /**
  * TODO を追加する
  */
 const todo = (task: string): void => {
   tasks.set(task, false);
+  saveTasks();
 };
 
 /**
@@ -32,6 +50,7 @@ const list = (): string[] => {
 const done = (task: string): void => {
   if (tasks.has(task)) {
     tasks.set(task, true);
+    saveTasks();
   }
 };
 
@@ -47,6 +66,7 @@ const doneList = (): string[] => {
 const del = (task: string): void => {
   if (tasks.has(task)) {
     tasks.delete(task);
+    saveTasks();
   }
 };
 

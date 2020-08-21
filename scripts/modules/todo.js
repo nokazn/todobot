@@ -1,11 +1,30 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const tasks = new Map();
+const fs_1 = __importDefault(require("fs"));
+const FILE_NAME = './tasks.json';
+let tasks = new Map();
+try {
+    const data = fs_1.default.readFileSync(FILE_NAME, 'utf8');
+    tasks = new Map(JSON.parse(data));
+}
+catch (err) {
+    console.error(`${FILE_NAME}から復元できませんでした。`);
+}
+/**
+ * タスクをファイルに保存
+ */
+const saveTasks = () => {
+    fs_1.default.writeFileSync(FILE_NAME, JSON.stringify(Array.from(tasks)), 'utf8');
+};
 /**
  * TODO を追加する
  */
 const todo = (task) => {
     tasks.set(task, false);
+    saveTasks();
 };
 /**
  * タスクト完了したかどうかのタプルを受け取り、完了したかを返す
@@ -29,6 +48,7 @@ const list = () => {
 const done = (task) => {
     if (tasks.has(task)) {
         tasks.set(task, true);
+        saveTasks();
     }
 };
 /**
@@ -42,6 +62,7 @@ const doneList = () => {
 const del = (task) => {
     if (tasks.has(task)) {
         tasks.delete(task);
+        saveTasks();
     }
 };
 exports.default = { todo, list, done, doneList, del };
